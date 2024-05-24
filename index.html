@@ -1,66 +1,95 @@
-<!DOCTYPR html>
-
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Birthday Gift </title>
-        
-        <!-- Link CSS Style.css file-->
-        
-        <link rel="stylesheet" href="css/style.css">
-        
-    </head>
-    <body>
-        <div class='moon'>
-            <div class='crater1'></div>
-            <div class='crater2'></div>
-            <div class='crater3'></div>
-        </div>
-        
-        <canvas id="canvas"></canvas>
-        
-        <div id="sea"></div>
-        <div id="beach"></div>
-        
-        <img src="https://github.com/patefkae/mummy.github.io/blob/main/mm.jpg?raw=true" alt="Jumping-people" id="people" />
-        
-        <div id="merrywrap" class="merrywrap">
-            <div class="giftbox">
-                <div class="cover">
-                    <div></div>
-                </div>
-                
-                <div class="box"></div>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #ffdbac, #bbedd9);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top;
+        }
+
+        .countdown-container {
+            position:relative;
+             /* Adjust the distance from the bottom */
+            right: -13%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: rgba(249, 7, 200, 0.941);
+            background-color: rgba(248, 227, 156, 0.9);
+            padding:0%;
+            border-radius: 10px;
+            box-shadow: 10px 0 10px rgba(0, 0, 0, 0.3);
+            margin-left: 125px;
+            margin-top: -250px;
+            min-width: 220px;
+            max-height: 530px;
+        }
+
+        .countdown-container img {
+            width: 250px; /* Make the image fill the width of the container */
+            height: 530px; /* Maintain the aspect ratio */
+            border-radius: 5px; /* Optional: Add border-radius to the image */
+       
             
-            <div class="icons">
-                <div class="row">
-                    <span>H</span>
-                    <span>a</span>
-                    <span>p</span>
-                    <span>p</span>
-                    <span>y</span>
-                    
-                </div>
-                <div class="row">
-                    <span>B</span>
-                    <span>i</span>
-                    <span>r</span>
-                    <span>t</span>
-                    <span>h</span>
-                    <span>d</span>
-                    <span>a</span>
-                    <span>y</span>
-                </div>
-                
-                
-            </div>
-        </div>
-        
-        <div id="video"></div>
-        
-        
-        <script src="js/index.js"></script>
-        
-    </body>
+        }
+
+        #countdown {
+            font-size:x-large;
+            margin-top: 20px;
+            color: rgba(61, 6, 243, 0.97);
+        }
+    </style>
+</head>
+<body>
+
+<div class="countdown-container">
+    
+    <img src="https://github.com/patefkae/mummy.github.io/blob/main/mm.jpg?raw=true" alt="Your Image Description">
+    <h1>Birthday countdown</h1>
+    <div id="countdown"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Set the date we're counting down to
+        const countDownDate = new Date("may 08, 2024 00:00:00").getTime();
+
+        // Update the countdown every 1 second
+        const x = setInterval(function () {
+            // Get the current date and time
+            const now = new Date().getTime();
+
+            // Calculate the remaining time
+            const distance = countDownDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("countdown").innerHTML = days + "d :" + hours + "h :" + minutes + "m :" + seconds + "s " ;
+            
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "HAPPY BIRTHDAY MUMMY";
+            }
+        }, 1000);
+    });
+</script>
+
+</body>
 </html>
